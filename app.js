@@ -1,5 +1,7 @@
 import express from "express";
 
+import { getProducts } from "./functions.js";
+
 const PORT = process.env.PORT;
 
 const server = express();
@@ -9,7 +11,12 @@ server.get("/", (req, res) => {
 });
 
 server.get("/health", (req, res) => {
-  res.status(200).json({ seccuss: true, message: "status: healthy" });
+  res.json({ seccuss: true, message: "status: healthy" });
+});
+
+server.get("/products", async (req, res) => {
+  const result = await getProducts();
+  res.json({ seccuss: true, data: result });
 });
 
 server.listen(PORT, () => {
