@@ -1,0 +1,44 @@
+[
+  {
+    "id": 101,
+    "name": "The Hobbit",
+    "price": 69.90,
+    "stock": 15
+  },
+  {
+    "id": 102,
+    "name": "The Little Prince",
+    "price": 49.90,
+    "stock": 42
+  },
+  {
+    "id": 103,
+    "name": "1984",
+    "price": 55.00,
+    "stock": 8
+  },
+  {
+    "id": 104,
+    "name": "Harry Potter",
+    "price": 89.90,
+    "stock": 23
+  },
+  {
+    "id": 105,
+    "name": "The Alchemist",
+    "price": 59.90,
+    "stock": 0
+  },
+  {
+    "id": 106,
+    "name": "The Hunger Games",
+    "price": 79.90,
+    "stock": 11
+  },
+  {
+    "id": 107,
+    "name": "Dune",
+    "price": 74.50,
+    "stock": 19
+  }
+]
