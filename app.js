@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getProducts } from "./functions.js";
+import { getProducts } from "./utils/functions.js";
 
 const PORT = process.env.PORT;
 
