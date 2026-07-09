@@ -5,8 +5,12 @@ import { getOrders, checkout } from "../utils/functions.js";
 const router = express.Router();
 
 router.get("", async (req, res) => {
-  const result = await getOrders();
-  res.json({ seccuss: true, data: result });
+  try {
+    const result = await getOrders(res, req.body.customerId);
+    res.json({ seccuss: true, data: result });
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 router.post("/checkout", async (req, res) => {

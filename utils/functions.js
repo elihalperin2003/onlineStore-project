@@ -98,9 +98,14 @@ export async function getBalance(res, customerId) {
   return customer.balance;
 }
 
-export async function getOrders() {
-  const products = await readFile("./database/orders.json");
-  return products;
+export async function getOrders(res, customerId) {
+  if (!isExists(res, customerId)) return;
+  if (!isNumber(res, customerId)) return;
+  const orders = await readFile("./database/orders.json");
+  const ordersOfCustomer = orders.filter(
+    (order) => +order.customerId === +customerId,
+  );
+  return ordersOfCustomer;
 }
 
 export async function checkout(customerId) {
