@@ -40,3 +40,11 @@ export async function deleteProduct(productId, customerId) {
   await writeFile("./database/products.json", products);
   return;
 }
+
+export async function getBalance(customerId) {
+  const customers = await readFile("./database/customers.json");
+  const customer = customers.find(
+    (customer) => customer.customerId === customerId,
+  );
+  return customer.balance;
+}

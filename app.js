@@ -1,6 +1,6 @@
 import express from "express";
 
-import { getProducts } from "./utils/functions.js";
+import { getProducts, getBalance } from "./utils/functions.js";
 import cartRouter from "./routes/cart.js";
 
 const PORT = process.env.PORT;
@@ -21,6 +21,11 @@ server.get("/health", (req, res) => {
 
 server.get("/products", async (req, res) => {
   const result = await getProducts();
+  res.json({ seccuss: true, data: result });
+});
+
+server.get("/account/balance", async (req, res) => {
+  const result = await getBalance(+req.query.customerId);
   res.json({ seccuss: true, data: result });
 });
 
