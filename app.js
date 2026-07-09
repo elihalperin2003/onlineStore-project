@@ -31,8 +31,12 @@ server.get("/products", async (req, res) => {
 });
 
 server.get("/account/balance", async (req, res) => {
-  const result = await getBalance(+req.query.customerId);
-  res.json({ seccuss: true, data: result });
+  try {
+    const result = await getBalance(res, +req.query.customerId);
+    res.json({ seccuss: true, data: result });
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 server.listen(PORT, () => {

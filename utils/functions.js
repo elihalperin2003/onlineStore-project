@@ -85,11 +85,16 @@ export async function deleteProduct(res, productId, customerId) {
   return "product deleted";
 }
 
-export async function getBalance(customerId) {
+export async function getBalance(res, customerId) {
+  if (!isNumber(res, customerId)) return;
+
+  if (!isExists(res, customerId)) return;
   const customers = await readFile("./database/customers.json");
   const customer = customers.find(
     (customer) => customer.customerId === customerId,
   );
+  if (!isfound(res, customer)) return;
+
   return customer.balance;
 }
 
