@@ -5,8 +5,12 @@ import { getCart, addProduct, deleteProduct } from "../utils/functions.js";
 const router = express.Router();
 
 router.get("", async (req, res) => {
-  const result = await getCart(+req.query.customerId);
-  res.json({ seccuss: true, data: result });
+  try {
+    const result = await getCart(res, +req.query.customerId);
+    res.json({ seccuss: true, data: result });
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 router.post("/items", async (req, res) => {

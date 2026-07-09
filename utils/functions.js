@@ -1,11 +1,11 @@
 import { readFile, writeFile } from "./io.js";
-import { isNumber, isTrue } from "./Validations.js";
+import { isNumber, isTrue, isCustomer, isExists } from "./Validations.js";
 
 export async function getProducts(res, params) {
   let products = await readFile("./database/products.json");
   const { inStock, maxPrice, search } = params;
-  if (!isTrue(res, inStock)) return "fd";
-  if (!isNumber(res, maxPrice)) return "dfgh";
+  if (!isTrue(res, inStock)) return;
+  if (!isNumber(res, maxPrice)) return;
   if (inStock) {
     products = products.filter((product) => +product.stock > 0);
   }
@@ -19,11 +19,14 @@ export async function getProducts(res, params) {
   return products;
 }
 
-export async function getCart(customerId) {
+export async function getCart(res, customerId) {
+  if (!isExists(res, customerId)) return;
+  if (!isNumber(res, customerId)) return;
   const customers = await readFile("./database/customers.json");
   const customer = customers.find(
     (customer) => customer.customerId === customerId,
   );
+  if (!isCustomer(res, customer)) return;
   return customer.cart;
 }
 
