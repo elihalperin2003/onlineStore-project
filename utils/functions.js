@@ -22,7 +22,20 @@ export async function addProduct(body) {
   );
   let product = products.find((product) => product.id === productId);
   product.stock -= +quantuty;
-  customer.cart.push(product.name);
+  // customer.cart.push({ productId, quantuty });
+  await writeFile("./database/customers.json", customers);
+  await writeFile("./database/products.json", products);
+  return;
+}
+
+export async function deleteProduct(productId, customerId) {
+  const customers = await readFile("./database/customers.json");
+  const products = await readFile("./database/products.json");
+  let customer = customers.find(
+    (customer) => customer.customerId === customerId,
+  );
+  let product = products.find((product) => product.id === productId);
+  product.stock += 1;
   await writeFile("./database/customers.json", customers);
   await writeFile("./database/products.json", products);
   return;
