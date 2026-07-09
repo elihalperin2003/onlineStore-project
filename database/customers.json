@@ -1,31 +1,42 @@
 [
   {
     "customerId": 201,
-    "balance": 500.00,
-    "cart": ["fff"],
+    "balance": 500,
+    "cart": [
+      "fff"
+    ],
     "createdAt": "2026-07-01T08:30:00Z"
   },
   {
     "customerId": 202,
-    "balance": 500.00,
-    "cart": [],
+    "balance": 500,
+    "cart": [
+      "The Little Prince",
+      "The Little Prince",
+      "The Little Prince",
+      "The Little Prince",
+      "The Little Prince",
+      "The Little Prince",
+      "The Little Prince",
+      "The Little Prince"
+    ],
     "createdAt": "2026-07-02T14:15:22Z"
   },
   {
     "customerId": 203,
-    "balance": 500.00,
+    "balance": 500,
     "cart": [],
     "createdAt": "2026-07-03T19:45:10Z"
   },
   {
     "customerId": 204,
-    "balance": 500.00,
+    "balance": 500,
     "cart": [],
     "createdAt": "2026-07-04T11:00:15Z"
   },
   {
     "customerId": 205,
-    "balance": 500.00,
+    "balance": 500,
     "cart": [],
     "createdAt": "2026-07-05T22:12:00Z"
   }

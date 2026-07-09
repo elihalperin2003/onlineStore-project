@@ -6,6 +6,9 @@ import cartRouter from "./routes/cart.js";
 const PORT = process.env.PORT;
 
 const server = express();
+
+server.use(express.json());
+
 server.use("/cart", cartRouter);
 
 server.get("/", (req, res) => {
