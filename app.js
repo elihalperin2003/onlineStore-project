@@ -22,8 +22,12 @@ server.get("/health", (req, res) => {
 });
 
 server.get("/products", async (req, res) => {
-  const result = await getProducts();
-  res.json({ seccuss: true, data: result });
+  try {
+    const result = await getProducts(res, req.query);
+    res.json({ seccuss: true, data: result });
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 server.get("/account/balance", async (req, res) => {

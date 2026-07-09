@@ -1,7 +1,21 @@
 import { readFile, writeFile } from "./io.js";
+import { isNumber, isTrue } from "./Validations.js";
 
-export async function getProducts() {
-  const products = await readFile("./database/products.json");
+export async function getProducts(res, params) {
+  let products = await readFile("./database/products.json");
+  const { inStock, maxPrice, search } = params;
+  if (!isTrue(res, inStock)) return "fd";
+  if (!isNumber(res, maxPrice)) return "dfgh";
+  if (inStock) {
+    products = products.filter((product) => +product.stock > 0);
+  }
+  if (maxPrice) {
+    products = products.filter((product) => +product.price >= +maxPrice);
+  }
+  if (search) {
+    products = products.filter((product) => product.name.includes(search));
+  }
+
   return products;
 }
 
