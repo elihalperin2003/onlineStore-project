@@ -48,3 +48,8 @@ export async function getBalance(customerId) {
   );
   return customer.balance;
 }
+
+export async function getOrders() {
+  const products = await readFile("./database/orders.json");
+  return products;
+}

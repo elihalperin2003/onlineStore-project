@@ -2,6 +2,7 @@ import express from "express";
 
 import { getProducts, getBalance } from "./utils/functions.js";
 import cartRouter from "./routes/cart.js";
+import ordersRouter from "./routes/orders.js";
 
 const PORT = process.env.PORT;
 
@@ -10,6 +11,7 @@ const server = express();
 server.use(express.json());
 
 server.use("/cart", cartRouter);
+server.use("/orders", ordersRouter);
 
 server.get("/", (req, res) => {
   res.json({ seccuss: true, message: "The server running now" });
