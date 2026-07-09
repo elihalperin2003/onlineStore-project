@@ -14,8 +14,15 @@ router.get("", async (req, res) => {
 });
 
 router.post("/items", async (req, res) => {
-  await addProduct(req.body);
-  res.json({ seccuss: true, message: "product added to the cart" });
+  try {
+    const result = await addProduct(res, req.body);
+    if (!result) {
+      throw new Error();
+    }
+    res.json({ seccuss: true, message: "product added to the cart" });
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 router.delete("/items/:productId", async (req, res) => {

@@ -1,5 +1,12 @@
 import { readFile, writeFile } from "./io.js";
-import { isNumber, isTrue, isCustomer, isExists } from "./Validations.js";
+import {
+  isNumber,
+  isTrue,
+  isfound,
+  isExists,
+  isPositiveNumber,
+  isStuckFull,
+} from "./Validations.js";
 
 export async function getProducts(res, params) {
   let products = await readFile("./database/products.json");
@@ -26,23 +33,32 @@ export async function getCart(res, customerId) {
   const customer = customers.find(
     (customer) => customer.customerId === customerId,
   );
-  if (!isCustomer(res, customer)) return;
+  if (!isfound(res, customer)) return;
   return customer.cart;
 }
 
-export async function addProduct(body) {
+export async function addProduct(res, body) {
   const { customerId, productId, quantuty } = body;
+  if (!isExists(res, customerId)) return;
+  if (!isExists(res, productId)) return;
+  if (!isExists(res, quantuty)) return;
+  if (!isPositiveNumber(res, quantuty)) return;
+  if (!isNumber(res, customerId)) return;
+  if (!isNumber(res, productId)) return;
+  if (!isNumber(res, quantuty)) return;
   const customers = await readFile("./database/customers.json");
   const products = await readFile("./database/products.json");
   let customer = customers.find(
     (customer) => customer.customerId === customerId,
   );
   let product = products.find((product) => product.id === productId);
-  product.stock -= +quantuty;
-  // customer.cart.push({ productId, quantuty });
+  if (!isfound(res, customer)) return;
+  if (!isfound(res, product)) return;
+  if (!isStuckFull(res, product.stock)) return;
+  customer.cart.push({ productId, quantuty });
   await writeFile("./database/customers.json", customers);
   await writeFile("./database/products.json", products);
-  return;
+  return "product added";
 }
 
 export async function deleteProduct(productId, customerId) {

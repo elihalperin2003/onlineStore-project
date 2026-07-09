@@ -9,27 +9,53 @@ export function isTrue(res, input) {
 }
 
 export function isNumber(res, num) {
-  if (!num) return true;
-  if (num === undefined || num === null || num === "" || isNaN(Number(num))) {
+  if (
+    num === undefined ||
+    num === null ||
+    num === "" ||
+    typeof num !== "number" ||
+    isNaN(num)
+  ) {
     res.status(400).json({ success: false, message: "you must enter number" });
     return false;
   }
   return true;
 }
 
-export function isCustomer(res, customer) {
-  if (!customer) {
-    res.status(404).json({ success: false, message: "customer not found" });
+export function isfound(res, input) {
+  if (!input) {
+    res.status(404).json({ success: false, message: "id not found" });
     return false;
   }
   return true;
 }
 
-export function isExists(res, customerId) {
-  if (!customerId) {
+export function isExists(res, input) {
+  if (input !== 0 && !input) {
     res
       .status(400)
-      .json({ success: false, message: "ypu must enter customer ID" });
+      .json({ success: false, message: "you must enter all inputs" });
+    return false;
+  }
+  return true;
+}
+
+export function isPositiveNumber(res, num) {
+  if (!isNumber(res, num)) return false;
+  if (num <= 0) {
+    res
+      .status(400)
+      .json({ success: false, message: "you must enter positive number" });
+    return false;
+  }
+  return true;
+}
+
+export function isStuckFull(res, stuck) {
+  if (+stuck === 0) {
+    res
+      .status(400)
+      .json({ success: false, message: "The product is out of stock" });
     return false;
   }
   return true;
