@@ -1,29 +1,19 @@
 [
   {
     "customerId": 201,
-    "balance": 120,
+    "balance": 401.2,
     "cart": [
-      "fff"
+      {
+        "productId": 102,
+        "quantuty": 2
+      }
     ],
     "createdAt": "2026-07-01T08:30:00Z"
   },
   {
     "customerId": 202,
     "balance": 500,
-    "cart": [
-      "The Little Prince",
-      "The Little Prince",
-      "The Little Prince",
-      "The Little Prince",
-      "The Little Prince",
-      "The Little Prince",
-      "The Little Prince",
-      "The Little Prince",
-      {
-        "productId": 102,
-        "quantuty": 2
-      }
-    ],
+    "cart": [],
     "createdAt": "2026-07-02T14:15:22Z"
   },
   {

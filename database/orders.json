@@ -1,17 +1,15 @@
 [
   {
-    "id": 1,
-    "customerId": 205,
+    "id": 301,
+    "customerId": 201,
+    "items": [
+      {
+        "productId": 102,
+        "quantuty": 2,
+        "price" : 99.8
+      }
+    ],
+    "total": 99.8,
     "createdAt": "2026-07-09T08:40:50.166Z"
-  },
-  {
-    "id": 2,
-    "customerId": 205,
-    "createdAt": "2026-07-09T08:40:53.647Z"
-  },
-  {
-    "id": 3,
-    "customerId": 205,
-    "createdAt": "2026-07-09T08:40:57.028Z"
   }
 ]

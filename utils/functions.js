@@ -60,7 +60,7 @@ export async function checkout(customerId) {
   const customer = customers.find(
     (customer) => customer.customerId === customerId,
   );
-  const id = orders.length + 1;
+  const id = orders.length + 301;
   const createdAt = new Date().toISOString();
 
   const newOrder = { id, customerId, createdAt };
