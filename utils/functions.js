@@ -53,3 +53,17 @@ export async function getOrders() {
   const products = await readFile("./database/orders.json");
   return products;
 }
+
+export async function checkout(customerId) {
+  const orders = await readFile("./database/orders.json");
+  const customers = await readFile("./database/customers.json");
+  const customer = customers.find(
+    (customer) => customer.customerId === customerId,
+  );
+  const id = orders.length + 1;
+  const createdAt = new Date().toISOString();
+
+  const newOrder = { id, customerId, createdAt };
+  orders.push(newOrder);
+  await writeFile("./database/orders.json", orders);
+}
