@@ -2,12 +2,7 @@
   {
     "customerId": 201,
     "balance": 401.2,
-    "cart": [
-      {
-        "productId": 102,
-        "quantuty": 2
-      }
-    ],
+    "cart": [],
     "createdAt": "2026-07-01T08:30:00Z"
   },
   {
@@ -24,28 +19,7 @@
   {
     "customerId": 203,
     "balance": 500,
-    "cart": [
-      {
-        "productId": 102,
-        "quantuty": "2"
-      },
-      {
-        "productId": 102,
-        "quantuty": "2"
-      },
-      {
-        "productId": 102,
-        "quantuty": "2"
-      },
-      {
-        "productId": 102,
-        "quantuty": "2"
-      },
-      {
-        "productId": 102,
-        "quantuty": 2
-      }
-    ],
+    "cart": [],
     "createdAt": "2026-07-03T19:45:10Z"
   },
   {

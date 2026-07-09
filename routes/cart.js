@@ -26,8 +26,18 @@ router.post("/items", async (req, res) => {
 });
 
 router.delete("/items/:productId", async (req, res) => {
-  await deleteProduct(req.body.productId, +req.query.productId);
-  res.json({ seccuss: true, message: "product deleted from the cart" });
+  try {
+    const result = await deleteProduct(
+      res,
+      req.params.productId,
+      req.body.customerId,
+    );
+    if (!result) {
+      throw new Error();
+    }
+    res.json({ seccuss: true, message: "product deleted from the cart" });
+  } catch (err) {
+    console.log(err.message);
+  }
 });
-
 export default router;
