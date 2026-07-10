@@ -60,3 +60,38 @@ export function isStuckFull(res, stuck) {
   }
   return true;
 }
+
+export function isCartFull(res, cart) {
+  if (cart.length === 0) {
+    res.status(400).json({ success: false, message: "The cart is empty" });
+    return false;
+  }
+  return true;
+}
+
+export function isPaymentPossible(res, balance, total) {
+  if (balance - total < 0) {
+    res.status(400).json({
+      success: false,
+      message: "You do not have enough money in your account",
+    });
+    return false;
+  }
+  return true;
+}
+
+export function isInStock(res, products, items) {
+  for (const item of items) {
+    const inStock = products.find(
+      (product) => +product.id === +item.productId,
+    ).stock;
+    if (+inStock - +item.quantuty < 0) {
+      res.status(400).json({
+        success: false,
+        message: "Out of stock",
+      });
+      return false;
+    }
+  }
+  return true;
+}

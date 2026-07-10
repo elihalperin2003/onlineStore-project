@@ -6,6 +6,9 @@ import {
   isExists,
   isPositiveNumber,
   isStuckFull,
+  isCartFull,
+  isPaymentPossible,
+  isInStock,
 } from "./Validations.js";
 
 export async function getProducts(res, params) {
@@ -108,16 +111,38 @@ export async function getOrders(res, customerId) {
   return ordersOfCustomer;
 }
 
-export async function checkout(customerId) {
+export async function checkout(res, customerId) {
+  if (customerId && !isNumber(res, +customerId)) return;
   const orders = await readFile("./database/orders.json");
+  const products = await readFile("./database/products.json");
   const customers = await readFile("./database/customers.json");
-  const customer = customers.find(
-    (customer) => customer.customerId === customerId,
+  const prices = products.reduce((acc, product) => {
+    acc[product.id] = product.price;
+    return acc;
+  }, {});
+  let customer = customers.find(
+    (customer) => +customer.customerId === +customerId,
   );
+  if (!isCartFull(res, customer.cart)) return;
   const id = orders.length + 301;
+  let items = customer.cart.map((product) => {
+    const { productId, quantuty } = product;
+    const price = prices[productId];
+    return { productId, quantuty, price };
+  });
+  if (!isInStock(res, products, items)) return;
+  const total = items.reduce((acc, cur) => acc + cur.price, 0);
+  if (!isPaymentPossible(res, customer.balance, total)) returns;
   const createdAt = new Date().toISOString();
-
-  const newOrder = { id, customerId, createdAt };
+  const newOrder = { id, customerId, items, total, createdAt };
   orders.push(newOrder);
+  customer.balance -= total;
+  for (const item of items) {
+    let product = products.find((product) => +product.id === +item.productId);
+    product.stock -= item.quantuty;
+  }
   await writeFile("./database/orders.json", orders);
+  await writeFile("./database/products.json", products);
+  await writeFile("./database/customers.json", customers);
+  return "order complited!";
 }

@@ -9,7 +9,7 @@
     "id": 102,
     "name": "The Little Prince",
     "price": 49.9,
-    "stock": 29
+    "stock": 1
   },
   {
     "id": 103,
@@ -34,11 +34,5 @@
     "name": "The Hunger Games",
     "price": 79.9,
     "stock": 11
-  },
-  {
-    "id": 107,
-    "name": "Dune",
-    "price": 74.5,
-    "stock": 19
   }
 ]

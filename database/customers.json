@@ -7,7 +7,7 @@
   },
   {
     "customerId": 202,
-    "balance": 500,
+    "balance": 400.20000000000005,
     "cart": [
       {
         "productId": 102,
@@ -30,7 +30,7 @@
   },
   {
     "customerId": 205,
-    "balance": 500,
+    "balance": 400.20000000000005,
     "cart": [
       {
         "productId": 102,

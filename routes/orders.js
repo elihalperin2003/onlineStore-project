@@ -14,8 +14,12 @@ router.get("", async (req, res) => {
 });
 
 router.post("/checkout", async (req, res) => {
-  const result = await checkout(+req.query.customerId);
-  res.json({ seccuss: true, data: result });
+  try {
+    const result = await checkout(res, req.query.customerId);
+    res.json({ seccuss: true, data: result });
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 export default router;
